@@ -3,7 +3,20 @@
  */
 package org.example
 
+
 fun main() {
+    // Definir dos notas de ejemplo
+    val nota1 = 8.0
+    val nota2 = 7.5
+
+    // Calcular el promedio de las dos notas
+    val promedio = calcularPromedio(nota1, nota2)
+
+    // Mostrar el promedio calculado
+    println("El promedio es: $promedio")
+
+    // Verificar si el promedio es suficiente para aprobar y mostrar el resultado
+    println("¿Está aprobado? ${esAprobado(promedio)}")
     println("=== Etapa 1: Funciones Básicas ===")
     // TODO: Implementar función calcularPromedio
     val promedio1 = calcularPromedio(7.5, 8.0)
@@ -50,19 +63,21 @@ fun main() {
     println("Cantidad de aprobados: ${contarAprobados(notas)}")
 }
 
-// TODO: Implementar las siguientes funciones:
 
-// Etapa 1
+
+
 fun calcularPromedio(nota1: Double, nota2: Double): Double {
-    // Implementar aquí
-    return 0.0
+    // Sumar las dos notas y dividir por 2 para obtener el promedio
+    return (nota1 + nota2) / 2
 }
 
 fun esAprobado(nota: Double): Boolean {
-    // Implementar aquí
-    return false
+    // Verificar si la nota es mayor o igual a 6 para determinar si está aprobado
+    return nota >= 6
 }
 
+
+// TODO: Implementar las siguientes funciones:
 // Etapa 2
 fun calcularPromedioTresNotas(nota1: Double, nota2: Double, nota3: Double): Double {
     // Implementar aquí
