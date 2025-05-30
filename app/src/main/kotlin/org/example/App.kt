@@ -4,25 +4,11 @@
 package org.example
 
 
-fun main() {
-    // Definir dos notas de ejemplo
-    val nota1 = 8.0
-    val nota2 = 7.5
-
-    // Calcular el promedio de las dos notas
-    val promedio = calcularPromedio(nota1, nota2)
-
-    // Mostrar el promedio calculado
-    println("El promedio es: $promedio")
-
-    // Verificar si el promedio es suficiente para aprobar y mostrar el resultado
-    println("¿Está aprobado? ${esAprobado(promedio)}")
+fun main(){
     println("=== Etapa 1: Funciones Básicas ===")
     // TODO: Implementar función calcularPromedio
     val promedio1 = calcularPromedio(7.5, 8.0)
-    println("El promedio es: $promedio1")
-
-    // TODO: Implementar función esAprobado
+    println("El promedio es: $promedio1")    // TODO: Implementar función esAprobado
     val nota = 7.0
     val aprobado = esAprobado(nota)
     println("¿Está aprobado? $aprobado")
@@ -73,50 +59,71 @@ fun calcularPromedio(nota1: Double, nota2: Double): Double {
 
 fun esAprobado(nota: Double): Boolean {
     // Verificar si la nota es mayor o igual a 6 para determinar si está aprobado
-    return nota >= 6
+    if(nota >= 6.0){
+        return true
+    }
+    return false
 }
 
 
-// TODO: Implementar las siguientes funciones:
+
 // Etapa 2
+
 fun calcularPromedioTresNotas(nota1: Double, nota2: Double, nota3: Double): Double {
-    // Implementar aquí
-    return 0.0
+    return (nota1 + nota2 + nota3) / 3
 }
 
 fun obtenerEstadoAlumno(nombre: String, apellido: String, nota: Double): String {
-    // Implementar aquí
-    return ""
+    val estado = if (nota >= 10.5){ "está aprobado" }else {"está desaprobado"}
+    return "El alumno $nombre $apellido esta aprobado"
 }
 
 // Etapa 3
+
+// 1. Calcula el promedio de una lista de notas
 fun calcularPromedioCurso(notas: List<Double>): Double {
-    // Implementar aquí
-    return 0.0
+    return if (notas.isNotEmpty()) {
+        notas.sum() / notas.size
+    } else {
+        0.0
+    }
 }
 
+// 2. Devuelve una lista con los nombres de los alumnos que tienen nota igual o mayor a 6.0
 fun obtenerAlumnosAprobados(nombres: List<String>, notas: List<Double>): List<String> {
-    // Implementar aquí
-    return emptyList()
+    val alumnosAprobados = mutableListOf<String>()
+    for (i in nombres.indices) {
+        if (i < notas.size && notas[i] >= 6.0) {
+            alumnosAprobados.add(nombres[i])
+        }
+    }
+    return alumnosAprobados
 }
 
 // Etapa 4
 fun generarBoletin(nombre: String, materias: List<String>, notas: List<Double>): String {
-    // Implementar aquí
-    return ""
+    val builder = StringBuilder()
+    builder.append("Boletín de notas de $nombre\n")
+    builder.append("----------------------------\n")
+    for (i in materias.indices) {
+        val nota = if (i < notas.size) notas[i] else 0.0
+        builder.append("${materias[i]}: $nota\n")
+    }
+    val promedio = if (notas.isNotEmpty()) notas.sum() / notas.size else 0.0
+    builder.append("----------------------------\n")
+    builder.append("Promedio general: %.2f".format(promedio))
+    return builder.toString()
 }
 
 fun obtenerNotaMasAlta(notas: List<Double>): Double {
-    // Implementar aquí
-    return 0.0
+    return notas.maxOrNull() ?: 0.0
 }
 
 fun obtenerNotaMasBaja(notas: List<Double>): Double {
-    // Implementar aquí
-    return 0.0
+    return notas.minOrNull() ?: 0.0
 }
 
 fun contarAprobados(notas: List<Double>): Int {
-    // Implementar aquí
-    return 0
+    return notas.count { it >= 6.0 }
 }
+
